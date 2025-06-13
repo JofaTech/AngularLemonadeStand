@@ -16,6 +16,10 @@
         <button class="add-cart" (click)="addToCart()">Add to Cart</button>
     </app-card>
 </div>
-<app-cart *ngIf="cartShown" [lemonades] = "cartLemonades"></app-cart>
+<app-cart 
+    *ngIf="cartShown" 
+    [lemonades] = "cartLemonades"
+    (secondPassLemonadeIdEvent)="removeFromCart($event)"
+></app-cart>
 <app-cart-icon *ngIf="!cartShown" (click) = "toggleCart()"></app-cart-icon>
 <div class="backdrop" *ngIf="cartShown" (click) = "toggleCart()"></div>

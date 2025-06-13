@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Glass } from "../../lemonade/glass/glass";
 import { CurrencyPipe } from '@angular/common';
 
@@ -11,5 +11,15 @@ import { CurrencyPipe } from '@angular/common';
 export class CartItem {
 
   @Input() lemonade: any;
+
+  @Output() passLemonadeEvent = new EventEmitter<number>();
+
+  passLemonadeId(removedLemonadeId: number) {
+    this.passLemonadeEvent.emit(removedLemonadeId);
+  }
+
+  constructor() { }
+
+  ngOnInit(): void { }
 
 }

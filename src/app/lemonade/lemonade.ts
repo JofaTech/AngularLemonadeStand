@@ -16,6 +16,7 @@ interface LemonadeProduct {
 }
 
 interface LemonadeObject {
+  id: number;
   lemonJuice: number;
   sugar: number;
   iceCubes: number;
@@ -57,11 +58,14 @@ export class Lemonade {
   cartLemonades: LemonadeObject[] = [];
 
   currentLemonade: LemonadeObject = {
+    id: 0,
     lemonJuice: 0,
     sugar: 0,
     iceCubes: 0,
     price: 0,
   };
+
+  cartIdCount = 0;
 
   increment(productName: string) {
     Lemonade.bind(this)
@@ -94,6 +98,7 @@ export class Lemonade {
   addToCart() {
     if (this.products[0].amount > 0 || this.products[1].amount > 0 || this.products[2].amount > 0) {
       this.currentLemonade = {
+        id: this.cartIdCount,
         lemonJuice: this.products[0].amount,
         sugar: this.products[1].amount,
         iceCubes: this.products[2].amount,
@@ -102,7 +107,7 @@ export class Lemonade {
       this.currentLemonade.price = this.calculatePrice();
       this.cartLemonades.push(this.currentLemonade);
     }
-
+    this.cartIdCount++;
     console.log(this.cartLemonades);
     this.resetProducts();
   }
@@ -139,6 +144,15 @@ export class Lemonade {
         unit: 'cubes'
       }
     ]
+  }
+
+  removeFromCart(removedLemonadeId: number) {
+    const itemIdex = this.cartLemonades.findIndex(
+      (lemonade) => lemonade.id === removedLemonadeId
+    );
+    if (itemIdex > -1) {
+      this.cartLemonades.splice(itemIdex, 1);
+    }
   }
 
 }

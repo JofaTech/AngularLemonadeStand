@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartItem } from "./cart-item/cart-item";
 import { NgFor, CurrencyPipe } from '@angular/common';
 
@@ -17,8 +17,14 @@ interface LemonadeObject {
 })
 export class Cart {
   @Input() lemonades: LemonadeObject[] = [];
+
+  @Output() secondPassLemonadeIdEvent = new EventEmitter<number>();
   
   totalPrice: number = 0;
+
+  receiveLemonadeId(removedLemonadeId: number) {
+    this.secondPassLemonadeIdEvent.emit(removedLemonadeId);
+  }
 
   ngOnInit(): void {
     this.lemonades.forEach(
