@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ConvertMeasurementPipe } from './convert-measurement.pipe';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  standalone: true,
+  imports: [ConvertMeasurementPipe],
   templateUrl: './product.html',
   styleUrl: './product.css'
 })

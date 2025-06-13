@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, NgModule } from '@angular/core';
+//import { RouterOutlet } from '@angular/router';
 import { Lemonade } from "./lemonade/lemonade";
-// import { NgFor } from '@angular/common';
+//import { ConvertMeasurementPipe } from './lemonade/product/convert-measurement.pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Lemonade],
+  imports: [Lemonade],
+  //imports: [RouterOutlet, Lemonade],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App {
   protected title = 'lemonadestand';
 }
+
+
